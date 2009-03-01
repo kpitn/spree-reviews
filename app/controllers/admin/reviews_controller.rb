@@ -19,7 +19,11 @@ class Admin::ReviewsController < Admin::BaseController
   def approve
     r = Review.find(params[:id])
     r.approved = true
-    r.save
+    if r.save
+       flash[:notice] = t("info_approve_review")
+    else
+       flash[:error] = t("error_approve_review")
+    end
     redirect_to admin_reviews_path
   end
 
