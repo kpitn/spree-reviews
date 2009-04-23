@@ -1,0 +1,12 @@
+
+<% if defined? disabled %>
+  <% dis="disabled=\"disabled\""  %>
+  <% else  %>
+  <% dis=""  %>
+<% end %>
+<% for i in 1..Rating.get_nb_stars %>
+  <input name="review[rating]" type="radio" class="stars" value="<%= i  %>" <%= dis %> <%= "checked=\"checked\"" if i==number  %> />
+<% end %>
+
+
+

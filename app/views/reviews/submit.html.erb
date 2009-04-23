@@ -29,17 +29,7 @@
 		<strong>Rating</strong>
 	    </td>
 	    <td style="padding-top: 5px; padding-bottom: 5px;">
-              <% (1..5).each do |n| %>
-
-		<%= f.radio_button :rating, n %>
-		<label for="review_rating_<%= n %>">
-                  <span title="<%=pluralize(n, 'star')%> out of 5">
-                    <%= render :partial => "reviews/stars#{n}" %>
-                  </span>
-                </label>
-                <br/>
-
-	      <% end %> 
+          <%= render :partial => "reviews/stars",:locals=>{:number=>5} %>
 	    </td>
 	</tr>
 	<tr valign="top">
@@ -76,3 +66,9 @@
     </li><li>Submissions that do not follow our 
 	<%= link_to "review guidelines", url_for(:action => 'submission-guidelines') %> will not be published.
 </li></ul>
+
+
+<% content_for :head do %>
+  <%= javascript_include_tag("jquery.rating.js") %>
+  <%= javascript_tag("$(document).ready(function(){$('.stars').rating({required:true});});") %>
+<% end %>

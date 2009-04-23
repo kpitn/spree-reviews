@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   helper Spree::BaseHelper
-  before_filter :login_required		# no reviews without login first
+  require_role [:member,:admin]
 
   # 
   def submit

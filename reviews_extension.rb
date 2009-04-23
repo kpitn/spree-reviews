@@ -7,6 +7,7 @@ class ReviewsExtension < Spree::Extension
   url "git://github.com/paulcc/spree-reviews.git"
 
   define_routes do |map|
+    map.resources :reviews, :member=>{:submit=>:get}
     map.namespace :admin do |admin|
       admin.resources :reviews
     end  
