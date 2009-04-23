@@ -1,0 +1,11 @@
+<div class="review">
+  <span title="<%=pluralize(review.rating, 'star')%> out of 5">
+     <%= render :partial => "reviews/stars",:locals=>{:number=>review.rating,:review=>review,:disabled=>true} %>
+  </span>
+  <span class="title"><%=h review.title%> </span>
+  <br/>
+  <span class="attribution">By <strong><%=h review.user.login %></strong> on <strong><%=review.created_at.strftime("%d/%m/%Y") %></strong></span>
+  <p>
+  <%=h review.review%>
+  </p>
+</div>

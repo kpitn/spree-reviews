@@ -1,0 +1,21 @@
+
+
+  <% stars = product.get_stars %>
+  <div class="header">
+   <h2>Avis des internautes :</h2>
+   <div class="stars-rating">
+      <span title="<%=pluralize(stars[0], 'star')%> out of 5">
+        <%= render :partial => "reviews/stars",:locals=>{:number=>stars[0],:disabled=>true} %>
+      </span>  &nbsp;&nbsp;(<%= link_to(pluralize(stars[1], 'Avis'), {:controller => 'reviews', :action => 'index', :id => product.id}) %>)
+    </div>
+    <div class="ui-buttons">
+      <%= link_to("<span class=\"ui-icon ui-icon-comment\"></span>" + t('write_your_own_review'),  {:controller => 'reviews', :action => 'submit', :id => product.id}, :class => 'ui-button ui-state-default ui-corner-all') %>
+    </div>
+  </div>
+
+
+<% content_for :head do %>
+  <%= javascript_include_tag("jquery.rating.js") %>
+  <%= stylesheet_link_tag 'reviews.css' %>
+  <%= javascript_tag("$(document).ready(function(){$('.stars').rating({required:true});});") %>
+<% end %>
