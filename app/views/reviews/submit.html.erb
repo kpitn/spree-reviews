@@ -1,32 +1,16 @@
-<h1>Product review submission</h1>
-
-<h2>Please leave us a review and a rating for our "<%= @product.name %>"</h2>
-
 <%= stylesheet_link_tag 'reviews.css' %>
 <% form_for 'review', :url => {:action => 'create'} do |f| %>
   <%= error_messages_for :review %>
   <%= f.hidden_field :product_id, :value => @product.id %>     
-
+  <div class="ui-tabs ui-widget-content ui-corner-all ui-bloc">
+    <div class="ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+      <%= "#{t("leave_us_a_review")}  #{@product.name}" %>
+    </div>
     <table cellspacing="0" cellpadding="2">
-	<tbody><tr valign="top">
-	    <td class="fieldtitle right nowrap">
-		<%= f.label :name, "<strong>Your name</strong>" %>
-	    </td>
-	    <td width="100%">
-		<%= f.text_field :name, :size => 50, :maxlength => 100, :value => '' %>
-	    </td>
-	</tr>
-	<tr valign="top">
-	    <td class="fieldtitle right nowrap">
-		<%= f.label :location, "<strong>Your location</strong>" %>
-	    </td>
-	    <td>
-		<%= f.text_field :location, :size => 50, :maxlength => 100, :value => '' %>
-	    </td>
-	</tr>
+	<tbody>
 	<tr valign="top">
 	    <td style="padding-top: 5px; padding-bottom: 5px;" class="fieldtitle right nowrap">
-		<strong>Rating</strong>
+		<strong><%= t('rating') %></strong>
 	    </td>
 	    <td style="padding-top: 5px; padding-bottom: 5px;">
           <%= render :partial => "reviews/stars",:locals=>{:number=>5} %>
@@ -34,15 +18,15 @@
 	</tr>
 	<tr valign="top">
 	    <td class="fieldtitle right nowrap">
-		<%= f.label :title, "<strong>Review title</strong>" %>
+		<%= f.label :title, "<strong>#{t('title')}</strong>" %>
 	    </td>
 	    <td>
 		<%= f.text_field :title, :maxlength => "255", :size => "50", :value => '' %>
 	    </td>
 	</tr>
 	<tr valign="top">
-	    <td class="fieldtitle right nowrap">
-		<%= f.label :review, "<strong>Review text</strong>" %>
+	    <td class="fieldtitle right nowrap" style="vertical-align:top">
+		<%= f.label :review, "<strong>#{t('content')}</strong>" %>
 	    </td>
 	    <td>
 		<%= f.text_area :review, :wrap => "virtual", :rows => "10", :cols => "50" %>
@@ -51,10 +35,12 @@
 	<tr>
 	    <td> </td>
 	    <td style="padding-top: 5px;">
-		<%= f.submit "Submit your review", :class => "button" %>
+		<%#= f.submit "Submit your review", :class => "button" %>
+         <button type="submit" class="ui-state-default ui-corner-all ui-button"><span class="ui-icon ui-icon-check"></span><%= t("submit_your_review") %></button>
 	    </td>
 	</tr>
     </tbody></table>
+  </div>
 <% end %>
 
 <br/>

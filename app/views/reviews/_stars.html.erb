@@ -4,8 +4,16 @@
   <% else  %>
   <% dis=""  %>
 <% end %>
+
+<% if defined? review %>
+  <% id="review_#{review.id}"  %>
+<% else %>
+  <% id="review[rating]" %>
+<% end %>
+
+
 <% for i in 1..Rating.get_nb_stars %>
-  <input name="review[rating]" type="radio" class="stars" value="<%= i  %>" <%= dis %> <%= "checked=\"checked\"" if i==number  %> />
+  <input name="<%= id %>" type="radio" class="stars" value="<%= i  %>" <%= dis %> <%= "checked=\"checked\"" if i==number  %> />
 <% end %>
 
 

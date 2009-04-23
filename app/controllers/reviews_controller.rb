@@ -2,6 +2,11 @@ class ReviewsController < ApplicationController
   helper Spree::BaseHelper
   require_role [:member,:admin]
 
+  def index
+     @product = Product.find_by_id params[:id]
+     @reviews=@product.reviews
+  end
+
   # 
   def submit
     @review = Review.new :product_id => params[:id]
@@ -10,7 +15,7 @@ class ReviewsController < ApplicationController
 
   # save if all ok
   def create
-    @review = Review.new :product_id => params[:id]
+    @review = Review.new :product_id => params[:id],:user_id=>current_user.id
     @product = Product.find_by_id params[:review][:product_id]
     
 
@@ -19,8 +24,8 @@ class ReviewsController < ApplicationController
         @product.rating = Rating.create :value => 0, :count => 0
       end
       @product.rating.add_rating(params[:review][:rating].to_i)
-      flash[:notice] = 'Review was successfully submitted.'
-      redirect_to (product_path(@product))
+      flash[:notice] = t('review_successfully_sumbitted')
+      redirect_to(product_path(@product))
     else
       render :action => "submit" 
     end

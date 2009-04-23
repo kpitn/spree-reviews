@@ -1,11 +1,11 @@
-<h1>Manage the unapproved reviews</h1>
+<h1><%= t('review_management_description') %></h1>
 
 <table cellspacing=6>
   <tr>
     <th>Date</th>
-    <th>User/Loc</th>
-    <th>Title / Product</th>
-    <th>Body</th>
+    <th><%= t('user') %></th>
+    <th><%= t('title') %> / <%= t('product') %></th>
+    <th><%= t('content') %></th>
   </tr>
 
 <% for review in @reviews %>
@@ -14,7 +14,7 @@
       <%= review.created_at.strftime("%d-%m-%y (%H:%M)") %>
     </td>
     <td> 
-      <%= h review.name %> from <%= h review.location %>
+      <%= h review.user.login %>
     </td>
     <td>
       <%= h review.title %>
