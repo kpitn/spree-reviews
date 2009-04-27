@@ -32,8 +32,8 @@ class ReviewsExtension < Spree::Extension
       def get_stars
         if rating.nil? 
           [0,0]
-        else
-          [rating.get_stars, rating.count]
+        else   
+          [Review.average(:rating,:conditions=>["product_id=? and approved=1",self.id]).ceil,Review.count(:conditions=>["product_id=? and approved=1",self.id])]
         end
       end
     end
