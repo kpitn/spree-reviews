@@ -6,8 +6,8 @@ class UpdateReviews < ActiveRecord::Migration
   end
 
   def self.down
-    add_column :reviews, :string
-    add_column :reviews, :string
+    add_column :reviews, :name,  :string
+    add_column :reviews,  :location, :string
     remove_column :reviews, :user_id
   end
 end
