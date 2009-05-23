@@ -4,7 +4,7 @@
   </span>
   <span class="title"><%=h review.title%> </span>
   <br/>
-  <span class="attribution">By <strong><%=h review.user.login %></strong> on <strong><%=review.created_at.strftime("%d/%m/%Y") %></strong></span>
+  <span class="attribution">By <strong><%=h truncate(review.user.login,:length=>8) %></strong> on <strong><%=review.created_at.strftime("%d/%m/%Y") %></strong></span>
   <p>
   <%=h review.review%>
   </p>
