@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   helper Spree::BaseHelper
-  require_role [:user,:admin]
+  require_role [:user,:admin], :only => [:submit,:create]
 
   def index
      @product = Product.find_by_id params[:id]

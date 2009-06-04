@@ -3,7 +3,6 @@
   
   <%= render :partial => 'rating', :locals => {:product => @product,:readonly=>true} %>
 
-
   <% for review in Review.approved.find_all_by_product_id(@product.id) %>
     <%= render :partial => 'review', :locals => {:review => review} %>
   <% end %>
