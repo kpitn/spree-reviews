@@ -1,0 +1,14 @@
+<div id="reviews" class="ui-bloc">
+
+
+  <%= render :partial => '/reviews/rating', :locals => {:product => @product,:readonly=>true} %>
+
+  <% for review in Review.approved.find_all_by_product_id(@product.id,:limit=>5) %>
+    <%= render :partial => '/reviews/review', :locals => {:review => review} %>
+  <% end %>
+
+  <div class="ui-buttons">
+    <%= link_to("<span class=\"ui-icon ui-icon-comment\"></span>" + t('write_your_own_review'),  {:controller => 'reviews', :action => 'submit', :id => @product.id}, :class => 'ui-button ui-state-default ui-corner-all') %>
+  </div>
+
+</div>
