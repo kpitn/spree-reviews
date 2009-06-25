@@ -1,11 +1,11 @@
 <div class="review">
-  <span title="<%=pluralize(review.rating, 'star')%> out of 5">
+
+  <span class="ui-float-right" title="<%=pluralize(review.rating, 'star')%> out of 5">
      <%= render :partial => "reviews/stars",:locals=>{:number=>review.rating,:review=>review,:disabled=>true} %>
   </span>
-  <span class="title"><%=h review.title%> </span>
-  <br/>
-  <span class="attribution">By <strong><%=h truncate(review.user.login,:length=>8) %></strong> on <strong><%=review.created_at.strftime("%d/%m/%Y") %></strong></span>
-  <p>
-  <%=h review.review%>
+  <span class="title"><%=h review.title%></span>
+  <p class="content">
+    <%=h review.review%>
   </p>
+  <p><span class="bottom_bulle"><img src="/images/layout/bas_bulle.png"/></span><%=h truncate(review.user.login,:length=>8) %>le <%= l review.created_at %></p>
 </div>

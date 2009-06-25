@@ -2,7 +2,7 @@
   <span title="<%=pluralize(review.rating, 'star')%> out of 5">
      <%= render :partial => "reviews/stars",:locals=>{:readonly=>true,:stars=>review.rating} %>
   </span>
-  <span class="title"><%=h review.title%> </span>
+  <span class="title"><%=h review.title%></span>
   <br/>
   <span class="attribution">By <strong><%=h review.name%></strong> from <strong><%=h review.location%></strong> on <strong><%=review.created_at.strftime("%d/%m/%Y") %></strong></span>
   <p>
