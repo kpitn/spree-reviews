@@ -7,5 +7,5 @@
   <p class="content">
     <%=h review.review%>
   </p>
-  <p><span class="bottom_bulle"><img src="/images/layout/bas_bulle.png"/></span><%=h truncate(review.user.login,:length=>8) %>le <%= l review.created_at %></p>
+  <p><span class="bottom_bulle"><img src="/images/layout/bas_bulle.png"/></span><strong><%=h review.name %></strong> le <%= l review.created_at %></p>
 </div>

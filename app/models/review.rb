@@ -1,7 +1,7 @@
 class Review < ActiveRecord::Base
   belongs_to :product
   belongs_to :user
-  validates_presence_of  :title, :review
+  validates_presence_of  :title, :review,:name
   validates_numericality_of :rating, :only_integer => true
 
   named_scope :approved,     lambda {|*args| {:conditions => "approved"}}   

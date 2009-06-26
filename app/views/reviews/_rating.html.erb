@@ -13,6 +13,5 @@
 
 <% content_for :head do %>
   <%= javascript_include_tag("jquery.rating.js") %>
-  <%= stylesheet_link_tag 'reviews.css' %>
   <%= javascript_tag("$(document).ready(function(){$('.stars').rating({required:true});});") %>
 <% end %>

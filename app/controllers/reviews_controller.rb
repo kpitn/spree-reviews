@@ -25,7 +25,7 @@ class ReviewsController < ApplicationController
       end
       @product.rating.add_rating(params[:review][:rating].to_i)
       flash[:notice] = t('review_successfully_sumbitted')
-      redirect_to(product_path(@product))
+      redirect_back_or_default(product_path(@product))
     else
       render :action => "submit" 
     end
