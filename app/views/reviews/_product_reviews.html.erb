@@ -2,12 +2,14 @@
    <% stars = product.get_stars %>
    <h2><%= link_to( "AVIS DES INTERNAUTES <span class='small'>(#{ pluralize(stars[1], 'Avis')})</span>", {:controller => 'reviews', :action => 'index', :id => product.id}) %><div class="alpha"></div></h2>
 
-  <% for review in Review.approved.find_all_by_product_id(@product.id,:limit=>5) %>
+  <% for review in Review.approved.preview.find_all_by_product_id(@product.id) %>
     <%= render :partial => '/reviews/review', :locals => {:review => review} %>
   <% end %>
 
-
-   <%= link_to(t('write_your_own_review'),  {:controller => 'reviews', :action => 'submit', :id => @product.id}, :class => 'write_comment') %>
+  <% if stars[1]>3 %>
+    <%= link_to("Voir tous les avis (#{stars[1]})",reviews_url({:product_id=>@product.id})) %>
+  <% end %>
+  <%= link_to(t('write_your_own_review'),  {:controller => 'reviews', :action => 'submit', :id => @product.id}, :class => 'write_comment') %>
 
 
 

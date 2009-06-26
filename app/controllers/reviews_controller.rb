@@ -3,7 +3,11 @@ class ReviewsController < ApplicationController
   require_role [:user,:admin], :only => [:submit,:create]
 
   def index
-     @product = Product.find_by_id params[:id]
+    if params[:product_id]
+      @product = Product.find_by_id params[:product_id]
+    else
+      @product = Product.find_by_id params[:id]
+    end
      @reviews=@product.reviews
   end
 

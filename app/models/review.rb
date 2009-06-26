@@ -5,6 +5,7 @@ class Review < ActiveRecord::Base
   validates_numericality_of :rating, :only_integer => true
 
   named_scope :approved,     lambda {|*args| {:conditions => "approved"}}   
-  named_scope :not_approved, lambda {|*args| {:conditions => "not approved"}} 
-
+  named_scope :not_approved, lambda {|*args| {:conditions => "not approved"}}
+  named_scope :preview, :limit=>3, :order=>"created_at desc"
+preview
 end

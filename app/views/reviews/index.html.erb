@@ -1,15 +1,19 @@
 <div id="reviews" class="ui-bloc">
 
-  
   <%= render :partial => 'rating', :locals => {:product => @product,:readonly=>true} %>
+
+  <%= link_to(t('write_your_own_review'),  {:controller => 'reviews', :action => 'submit', :id => @product.id}, :class => 'write_comment') %>
+
+  <hr class="separate"/>
 
   <% for review in Review.approved.find_all_by_product_id(@product.id) %>
     <%= render :partial => 'review', :locals => {:review => review} %>
   <% end %>
 
-  <div class="ui-buttons">
-    <%= link_to("<span class=\"ui-icon ui-icon-comment\"></span>" + t('write_your_own_review'),  {:controller => 'reviews', :action => 'submit', :id => @product.id}, :class => 'ui-button ui-state-default ui-corner-all') %>
-  </div>
+  <hr class="separate"/>
+
+  <%= link_to(t('write_your_own_review'),  {:controller => 'reviews', :action => 'submit', :id => @product.id}, :class => 'write_comment') %>
+
 
 </div>
 
