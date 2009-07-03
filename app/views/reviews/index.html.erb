@@ -1,3 +1,7 @@
+<% content_for :sidebar do %>
+	<%= render :partial => "shared/taxonomies" %>
+<% end %>
+
 <div id="reviews" class="ui-bloc">
 
   <%= render :partial => 'rating', :locals => {:product => @product,:readonly=>true} %>
