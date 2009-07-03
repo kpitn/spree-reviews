@@ -1,3 +1,4 @@
+
 <div id="reviews">
   <%= render :partial => 'rating', :locals => {:product => product,:review=>review} %>
   <% for review in Review.approved.preview.find_all_by_product_id(product.id) %>

@@ -2,6 +2,8 @@
 	<%= render :partial => "shared/taxonomies" %>
 <% end %>
 
+<% @reviews=Review.approved.find_all_by_product_id(@product.id) %>
+
 <div id="reviews" class="ui-bloc">
 
   <%= render :partial => 'rating', :locals => {:product => @product,:readonly=>true} %>
@@ -10,14 +12,15 @@
 
   <hr class="separate"/>
 
-  <% for review in Review.approved.find_all_by_product_id(@product.id) %>
+  <% for review in @reviews %>
     <%= render :partial => 'review', :locals => {:review => review} %>
   <% end %>
 
-  <hr class="separate"/>
 
-  <%= link_to(t('write_your_own_review'),  {:controller => 'reviews', :action => 'submit', :id => @product.id}, :class => 'write_comment') %>
-
+  <% if @reviews.size>0 %>
+    <hr class="separate"/>
+    <%= link_to(t('write_your_own_review'),  {:controller => 'reviews', :action => 'submit', :id => @product.id}, :class => 'write_comment') %>
+  <% end %>
 
 </div>
 
