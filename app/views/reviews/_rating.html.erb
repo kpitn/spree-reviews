@@ -1,7 +1,7 @@
 
   <% stars = product.get_stars %>
   <div class="short_rating">
-   <h2><%= link_to( "AVIS DES INTERNAUTES <span class='small'>(#{ pluralize(stars[1], 'Avis')})</span>", {:controller => 'reviews', :action => 'index', :id => product.id}) %><div class="alpha"></div></h2>
+   <h2><%= link_to( "AVIS DES INTERNAUTES <span class='small'>(#{ pluralize(stars[1], 'Avis','Avis')})</span>", {:controller => 'reviews', :action => 'index', :id => product.id}) %><div class="alpha"></div></h2>
 
    <div class="stars-rating">
       <span title="<%=pluralize(stars[0], 'star')%> out of 5">
