@@ -1,6 +1,6 @@
 <div id="reviews">
    <% stars = product.get_stars %>
-   <h2><%= link_to( "AVIS DES INTERNAUTES <span class='small'>(#{ pluralize(stars[1], 'Avis')})</span>", {:controller => 'reviews', :action => 'index', :id => product.id}) %><div class="alpha"></div></h2>
+   <h2><%= link_to( "AVIS DES INTERNAUTES <span class='small'>(#{ pluralize(stars[1], 'Avis','Avis')})</span>", {:controller => 'reviews', :action => 'index', :id => product.id}) %><div class="alpha"></div></h2>
 
   <% for review in Review.approved.preview.find_all_by_product_id(@product.id) %>
     <%= render :partial => '/reviews/review', :locals => {:review => review} %>
