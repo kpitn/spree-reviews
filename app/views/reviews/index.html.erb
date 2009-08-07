@@ -1,6 +1,7 @@
 <% content_for :sidebar do %>
-	<%= render :partial => "shared/taxonomies" %>
+  <%= render :partial=>"/shared/left_menu" %>
 <% end %>
+
 
 <% @reviews=Review.approved.find_all_by_product_id(@product.id) %>
 
