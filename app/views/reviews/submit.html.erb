@@ -1,5 +1,5 @@
 <% content_for :sidebar do %>
-	<%= render :partial => "shared/taxonomies" %>
+  <%= render :partial=>"/shared/left_menu" %>
 <% end %>
 
 
@@ -57,14 +57,10 @@
 <% end %>
 
 <br/>
-<h2>The fine print</h2>
 <ul>
-    <li>All submitted reviews are subject to the licence terms set out in our 
-        <%= link_to "terms and conditions", url_for(:action => 'terms') %>.
-    </li><li>Approved reviews will be posted within one to two business days.
-    </li><li>Submissions that do not follow our 
-	<%= link_to "review guidelines", url_for(:action => 'submission-guidelines') %> will not be published.
-</li></ul>
+    <li>Les commentaires sont soumis a validation.
+    <li>Ils ne seront visible au plus tard que deux jours arpres leur soumission.
+</ul>
 
 
 <% content_for :head do %>

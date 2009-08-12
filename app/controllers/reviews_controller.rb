@@ -1,4 +1,4 @@
-class ReviewsController < ApplicationController
+class ReviewsController < Spree::BaseController
   helper Spree::BaseHelper
   require_role [:user,:admin], :only => [:submit,:create]
 
