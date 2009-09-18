@@ -1,7 +1,9 @@
 <% content_for :sidebar do %>
   <%= render :partial=>"/shared/left_menu" %>
 <% end %>
-
+<% content_for :head do %>
+  <% set_title("Commentaire #{@product.name}") %>
+<% end %>
 
 <% @reviews=Review.approved.find_all_by_product_id(@product.id) %>
 
@@ -11,7 +13,7 @@
 
   <%= link_to(t('write_your_own_review'),  {:controller => 'reviews', :action => 'submit', :id => @product.id}, :class => 'write_comment') %>
 
-  <hr class="separate"/>
+  <br/>
 
   <% for review in @reviews %>
     <%= render :partial => 'review', :locals => {:review => review} %>
@@ -19,7 +21,7 @@
 
 
   <% if @reviews.size>0 %>
-    <hr class="separate"/>
+    <br/>
     <%= link_to(t('write_your_own_review'),  {:controller => 'reviews', :action => 'submit', :id => @product.id}, :class => 'write_comment') %>
   <% end %>
 
