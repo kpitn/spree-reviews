@@ -1,29 +1,29 @@
 <% content_for :sidebar do %>
   <%= render :partial=>"/shared/left_menu" %>
 <% end %>
+
 <% content_for :head do %>
   <% set_title("Commentaire #{@product.name}") %>
 <% end %>
 
 <% @reviews=Review.approved.find_all_by_product_id(@product.id) %>
+<div id="reviews">
+  <h1 class="title"><%= "Commentaire #{@product.name}" %></h1>
 
-<div id="reviews" class="ui-bloc">
+  <%= render :partial => 'rating', :locals => {:product => @product,:readonly=>true,:comment_title=>""} %>
 
-  <%= render :partial => 'rating', :locals => {:product => @product,:readonly=>true} %>
-
-  <%= link_to(t('write_your_own_review'),  {:controller => 'reviews', :action => 'submit', :id => @product.id}, :class => 'write_comment') %>
-
+  <%= button_icon("Revenir à la fiche produit",seo_url(nil,@product),"ui-icon-circle-arrow-w") %>
+  <%= button_icon(t('write_your_own_review'), {:controller => 'reviews', :action => 'submit', :id => @product.id},"ui-icon-circle-plus",:rel=>"nofollow") %>
   <br/>
 
   <% for review in @reviews %>
     <%= render :partial => 'review', :locals => {:review => review} %>
   <% end %>
 
-
   <% if @reviews.size>0 %>
     <br/>
-    <%= link_to(t('write_your_own_review'),  {:controller => 'reviews', :action => 'submit', :id => @product.id}, :class => 'write_comment') %>
+    <%= button_icon("Revenir à la fiche produit",seo_url(@product),"ui-icon-circle-arrow-w") %>
+    <%= button_icon(t('write_your_own_review'), {:controller => 'reviews', :action => 'submit', :id => @product.id},"ui-icon-circle-plus",:rel=>"nofollow") %>
   <% end %>
 
 </div>
-

@@ -1,15 +1,14 @@
-
-  <% stars = product.get_stars %>
-  <div class="short_rating">
-   <h2><%= link_to( "AVIS DES INTERNAUTES <span class='small'>(#{ pluralize(stars[1], 'Avis','Avis')})</span>", {:controller => 'reviews', :action => 'index', :id => product.id}) %><div class="alpha"></div></h2>
-
-   <div class="stars-rating">
-      <span title="<%=pluralize(stars[0], 'star')%> out of 5">
-        <%= render :partial => "reviews/stars",:locals=>{:number=>stars[0],:disabled=>true,:review=>unique_id} %>
-      </span>
-    </div>
+<% stars = product.get_stars %>
+<div class="short_rating">
+  <% unless defined?(comment_title) %>
+    <h2>AVIS DES INTERNAUTES<br/><span class='small'>(<%= pluralize(stars[1], 'Avis','Avis') %>)</span></h2>
+  <% end %>
+  <div class="stars-rating">
+    <span title="<%=pluralize(stars[0], 'star')%> out of 5">
+      <%= render :partial => "reviews/stars",:locals=>{:number=>stars[0],:disabled=>true,:review=>unique_id} %>
+    </span>
   </div>
-
+</div>
 
 <% content_for :head do %>
   <%= javascript_include_tag("jquery.rating.js") %>

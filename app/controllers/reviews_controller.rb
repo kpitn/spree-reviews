@@ -1,5 +1,7 @@
 class ReviewsController < Spree::BaseController
   helper Spree::BaseHelper
+  helper ProductsHelper
+  
   require_role [:user,:admin], :only => [:submit,:create]
 
   def index

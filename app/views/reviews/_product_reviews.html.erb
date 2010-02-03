@@ -1,16 +1,24 @@
-<div id="reviews">
-   <% stars = product.get_stars %>
-   <h2><%= link_to( "AVIS DES INTERNAUTES <span class='small'>(#{ pluralize(stars[1], 'Avis','Avis')})</span>", {:controller => 'reviews', :action => 'index', :id => product.id}) %><div class="alpha"></div></h2>
+<div class="taxon">
+  <% stars = product.get_stars %>
 
-  <% for review in Review.approved.preview.find_all_by_product_id(@product.id) %>
+  <%= product_h2_title("AVIS DES INTERNAUTES <span class='small'>(#{ pluralize(stars[1], 'Avis','Avis')})</span>") %>
+  <br/>
+  <% if stars[1]>3 %>
+    <%= button_icon("Voir tous les avis (#{stars[1]})",reviews_url({:product_id=>@product.id}),"ui-icon-comment") %>
+  <% end %>
+  <%= button_icon(t('write_your_own_review'), {:controller => 'reviews', :action => 'submit', :id => @product.id},"ui-icon-circle-plus",:rel=>"nofollow") %>
+  <br/><br/>
+  <% @reviews = Review.approved.preview.find_all_by_product_id(@product.id) %>
+  <% for review in @reviews %>
     <%= render :partial => '/reviews/review', :locals => {:review => review} %>
   <% end %>
-
+  <br/><br/>
   <% if stars[1]>3 %>
-    <%= link_to("Voir tous les avis (#{stars[1]})",reviews_url({:product_id=>@product.id})) %>
+    <%= button_icon("Voir tous les avis (#{stars[1]})",reviews_url({:product_id=>@product.id}),"ui-icon-comment") %>
   <% end %>
-  <%= link_to(t('write_your_own_review'),  {:controller => 'reviews', :action => 'submit', :id => @product.id}, :class => 'write_comment') %>
 
-
+  <% if @reviews.size>0 %>
+    <%= button_icon(t('write_your_own_review'), {:controller => 'reviews', :action => 'submit', :id => @product.id},"ui-icon-circle-plus",:rel=>"nofollow") %>
+  <% end %>
 
 </div>
