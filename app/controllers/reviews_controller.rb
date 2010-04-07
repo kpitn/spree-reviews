@@ -10,7 +10,11 @@ class ReviewsController < Spree::BaseController
     else
       @product = Product.find_by_id params[:id]
     end
-     @reviews=@product.reviews
+    unless @product
+      render :file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404
+      return
+    end
+    @reviews=@product.reviews
   end
 
   # 
